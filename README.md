@@ -25,7 +25,9 @@ For eg., using python 3, a server listening on port 8000 can be started with[^1]
 
 ## TODO
 
-- [ ] add dev scripts in a makefile
+- [x] add dev scripts in a makefile
 
 
-[^1]: (https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/set_up_a_local_testing_server#using_python)[MDN]
+[^1]: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/set_up_a_local_testing_server#using_python)
+[^2]: [The Makefile I use with Javascript projects](https://news.ycombinator.com/item?id=16483889)
+[^3]: [Self-Documented Makefile](https://news.ycombinator.com/item?id=11195539)
