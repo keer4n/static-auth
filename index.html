@@ -1,8 +1,47 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title> Static Auth</title>
-    </head>
-    <body>
-        <h1> This is the home page </h2>
-    </body>
+
+<head>
+  <title> Static Auth</title>
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <form id="key">
+    <label>
+      Key:
+      <textarea name="file"></textarea>
+    </label>
+    <label>
+      Passphrase:
+      <input type="text" name="pass">
+    </label>
+    <button type="submit"> Submit </button>
+  </form>
+  <script>
+    document.getElementById('key').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.currentTarget);
+      const file = formData.get('file');
+      const openpgp = await import('./lib/openpgp.min.mjs');
+      console.log('openpgp', openpgp);
+      const pass = formData.get('pass');
+      const privateKey = await openpgp.decryptKey({
+        privateKey: await openpgp.readPrivateKey({
+          armoredKey: file
+        }), passphrase: pass
+      });
+      const secretfile = await fetch('/secretfile').then(res => res.text());
+      console.log('secretfile', secretfile);
+      // const {data: decrypted} = await openpgp.decrypt()
+    });
+  </script>
+</body>
+
 </html>
